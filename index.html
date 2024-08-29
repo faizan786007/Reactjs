@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let s=0;
+      let w=0;
+      let score=[]
+      let hit;
+      let inputRef=React.createRef()
+      
+      const handleSubmit=(e)=>{
+          e.preventDefault()
+          if(hit=='out')
+          {
+            w=w+1;
+          }
+          else
+          {
+              s=s+hit
+          }
+          
+          
+          score.unshift(<span>{hit==0?'dot':hit} {","} {inputRef.current.value}</span>) 
+          hit=0
+          inputRef.current.value=""
+          rootElement.render(<App />)
+      }
+      
+      const Form=()=>(
+      <>
+       <form onSubmit={handleSubmit}>
+        <input value={hit} />
+        <input ref={inputRef} placeholder="add acomment"/>
+        <button>submit</button> 
+        </form> 
+      </>
+      
+      )
+      
+      
+      const handleclick = (v) => {
+           hit=v
+           rootElement.render(<App />)
+        
+         
+      };
+      const handle = (v) => { 
+              hit='out'
+             rootElement.render(<App />)
+          
+         
+      };
+      
+      const Button=()=>(
+        <>
+            <button onClick={()=>handleclick(0)}>0</button>
+           <button onClick={()=>handleclick(1)}>1</button>
+          <button onClick={()=>handleclick(2)}>2</button>
+          <button onClick={()=>handleclick(4)}>4</button>
+          <button onClick={()=>handleclick(6)}>6</button>
+          <button onClick={()=>handle(1)}>w</button>
+        
+        </>
+      )
+      const Display=()=>(
+      <>
+        {
+            score.map((s,i)=>(
+            <>
+               {i%6==0?<br/>:null}
+               
+               <span key='i'>{s==0?<strong>.</strong>:s}</span>&nbsp;&nbsp;
+            </>
+            
+            ))
+        }
+        
+      </>
+      
+      
+      )
+
+      const App = () => (
+        <>
+         <h1>cricket</h1>
+          <h2>score{s}:wicket:{w}</h2>
+          <Button/>
+         
+          <hr style={{marginTop:"25px"}}/>
+         
+          <Form />
+          
+           <hr style={{marginTop:"25px"}}/>
+          {
+            score.map((ele)=>(
+            <>
+                <div>{ele}</div>
+        
+             </>
+            ))  
+          }
+          
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
