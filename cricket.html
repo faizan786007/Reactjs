@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Cricket App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let score = 0;
+      let wicket = 0;
+      let arr = [];
+
+      function handleScore(run) {
+        if (wicket < 10) {
+          score += run;
+          arr.push(run);
+        }
+        rootElement.render(<App />);
+      }
+
+      function handleWicket() {
+        if (wicket < 10) {
+          wicket += 1;
+          arr.push("W");
+        }
+        console.log(arr);
+        rootElement.render(<App />);
+      }
+
+      const Display = () => (
+        <div className="btn-container">
+          <button onClick={() => handleScore(0)}>0</button>
+          <button onClick={() => handleScore(1)}>1</button>
+          <button onClick={() => handleScore(2)}>2</button>
+          <button onClick={() => handleScore(3)}>3</button>
+          <button onClick={() => handleScore(4)}>4</button>
+          <button onClick={() => handleScore(6)}>6</button>
+          <button onClick={handleWicket}>Wicket</button>
+        </div>
+      );
+
+      const App = () => (
+        <div className="parent-container">
+          <h1>Cricket Match</h1>
+          <h2>Score: {score}</h2>
+          <h2>Wickets: {wicket}</h2>
+          <Display />
+          {arr.map((m, i) => (
+            <React.Fragment key={i}>
+              {i % 6 === 0 ? <br /> : ""}
+              <span>{m === 0 ? <strong>.</strong> : m}&nbsp; &nbsp;</span>
+            </React.Fragment>
+          ))}
+        </div>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>

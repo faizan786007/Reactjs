@@ -1,0 +1,129 @@
+/* General Page Styles */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+/* Parent Container */
+.parent-container {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	max-width: 600px;
+	width: 100%;
+}
+
+/* Headings */
+.parent-container h1 {
+	margin-bottom: 20px;
+	color: #333;
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.parent-container h2 {
+	margin: 10px 0;
+	font-size: 24px;
+	color: #555;
+}
+
+/* Button Container */
+.btn-container {
+	margin: 20px 0;
+}
+
+/* Button Styles */
+.btn-container button {
+	padding: 10px 15px;
+	margin: 5px;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	background-color: #28a745;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-container button:hover {
+	background-color: #218838;
+	transform: translateY(-2px);
+}
+
+/* Special button colors for different runs */
+.btn-container button:nth-child(1) {
+	background-color: #6c757d;
+}
+
+.btn-container button:nth-child(1):hover {
+	background-color: #5a6268;
+}
+
+.btn-container button:nth-child(5) {
+	background-color: #007bff;
+}
+
+.btn-container button:nth-child(5):hover {
+	background-color: #0056b3;
+}
+
+.btn-container button:nth-child(6) {
+	background-color: #ffc107;
+}
+
+.btn-container button:nth-child(6):hover {
+	background-color: #e0a800;
+}
+
+/* Style for the dynamically generated scores */
+.parent-container span {
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 5px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #f9f9f9;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+
+/* Style for wickets */
+.parent-container span:contains("W") {
+	color: red;
+	border-color: red;
+}
+
+/* Style for boundary (4 runs) */
+.parent-container span:contains("4") {
+	color: blue;
+	border-color: blue;
+}
+
+/* Style for six (6 runs) */
+.parent-container span:contains("6") {
+	color: green;
+	border-color: green;
+}
+
+/* Style for dots (0 runs) */
+.parent-container span:contains(".") {
+	color: #555;
+	border-color: #aaa;
+	background-color: #eee;
+}
+
+/* Line break after every 6 balls */
+.parent-container br {
+	content: "";
+	display: block;
+	margin-top: 10px;
+}
